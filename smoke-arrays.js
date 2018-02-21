@@ -1,37 +1,39 @@
-
-var x1 = 100;
-var y1 = 200;
-var d1 = 100;
-
-var x2 = 300;
-var y2 = 200;
-var d2 = 30;
+var x = 210;
+var y = 290;
+var r = 0;
 
 function setup() {
   createCanvas(400, 400);
-  colorMode(HSB)
 }
   
 function draw() {
-  background(255);
+  background(0);
   noStroke();
 
-  // draw two ellipses
-  fill(120, 60, 100);
-  ellipse(x1, y1, d1);
+  // draw smokestack
+  fill(255);
+  rect(195, height, 30, -100);
+
+  // save graphics state
+  push();
+  // darker as it gets closer to 0
+  fill(y);
+  // rotate r around (x,y)
+  translate(x, y);
+  rotate(r);
+  // draw rectangle
+  rect(-10, -10, 20, 20);
+  // reset rotation and translation
+  pop();
   
-  fill(240, 60, 100);
-  ellipse(x2, y2, d2);
+  // up 3 pixels
+  y -= 3;
   
-  // 1% of the time
-  if (random() < 0.01) {
-    // random diameter between 10 and 400
-    d1 = random(10, 400);
-  }
+  // rotate 0.05 radians ~= 2.8 degrees per frame
+  r += 0.05
   
-  // 2% of the time…
-  if (random() < 0.02) {
-    // random diameter between 10 and 400
-    d2 = random(10, 400);
+  // if reach past the top a bunch
+  if (y < -150) {
+    y = 290;
   }
 }
