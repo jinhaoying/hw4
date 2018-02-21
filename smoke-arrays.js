@@ -1,6 +1,5 @@
 var x = []
 var y = [];
-var r = 0;
 var x1 = [];
 var y1 = [];
 var r1 = []
